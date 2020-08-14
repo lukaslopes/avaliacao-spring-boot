@@ -29,7 +29,9 @@ public class EstudanteControllerCadastroTest extends EstudanteControllerBaseTest
                 post("/estudantes/add")
                         .param("nome", "Lukas")
                         .param("email", "email")
-                        .param("telefone", "telefone"))
+                        .param("telefone", "telefone")
+                        .param("matricula", "matricula")
+                        .param("curso", "curso"))
                 .andExpect(view().name("redirect:listar"))
                 .andReturn().getResponse();
 
@@ -67,6 +69,25 @@ public class EstudanteControllerCadastroTest extends EstudanteControllerBaseTest
                         .param("telefone", "telefone"))
                 .andExpect(view().name("cadastrar-estudante"))
                 .andExpect(content().string(CoreMatchers.containsString("Email é obrigatório.")))
+                .andReturn().getResponse();
+
+        assertEquals(response.getStatus(), HttpStatus.OK.value());
+        verify(estudanteService, never()).cadastrarEstudante(estudante);
+    }
+
+    @Test
+    public void shouldFailMissingMatricula() throws Exception {
+        final Estudante estudante = MockEstudante.getEstudante();
+
+        doNothing().when(estudanteService).cadastrarEstudante(estudante);
+
+        final MockHttpServletResponse response = mvc.perform(
+                MockMvcRequestBuilders.post("/estudantes/add")
+                        .param("nome", "Lukas")
+                        .param("email", "email")
+                        .param("telefone", "telefone"))
+                .andExpect(view().name("cadastrar-estudante"))
+                .andExpect(content().string(CoreMatchers.containsString("Matricula é obrigatória.")))
                 .andReturn().getResponse();
 
         assertEquals(response.getStatus(), HttpStatus.OK.value());

@@ -2,6 +2,7 @@ package br.com.tokiomarine.seguradora.avaliacao.controller;
 
 import br.com.tokiomarine.seguradora.avaliacao.entidade.Estudante;
 import br.com.tokiomarine.seguradora.avaliacao.service.EstudanteServiceImpl;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -18,6 +19,9 @@ public class EstudanteControllerBaseTest {
 
     @MockBean
     EstudanteServiceImpl estudanteService;
+
+    @Test
+    public void init(){}
 
 
 }

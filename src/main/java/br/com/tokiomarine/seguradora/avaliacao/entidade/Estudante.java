@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 public class Estudante {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -28,6 +28,13 @@ public class Estudante {
     @Column
     private String telefone;
 
+    @Column
+    @NotBlank(message="{matricula.blank}")
+    private String matricula;
+
+    @Column
+    private String curso;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -40,12 +47,14 @@ public class Estudante {
         return Objects.equals(id, estudante.id) &&
                 Objects.equals(nome, estudante.nome) &&
                 Objects.equals(email, estudante.email) &&
-                Objects.equals(telefone, estudante.telefone);
+                Objects.equals(telefone, estudante.telefone) &&
+                Objects.equals(matricula, estudante.matricula) &&
+                Objects.equals(curso, estudante.curso);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, email, telefone);
+        return Objects.hash(id, nome, email, telefone, matricula, curso);
     }
 
     public Long getId() {
@@ -78,5 +87,21 @@ public class Estudante {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
     }
 }

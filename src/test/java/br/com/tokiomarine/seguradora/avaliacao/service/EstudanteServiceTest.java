@@ -3,6 +3,7 @@ package br.com.tokiomarine.seguradora.avaliacao.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -81,11 +82,31 @@ public class EstudanteServiceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void buscarEstudanteNaoExistente() {
-        final Estudante estudante = MockEstudante.getEstudanteComId();
 
         when(repository.findById(2l)).thenReturn(Optional.empty());
 
         service.buscarEstudante(2l);
+    }
+
+    @Test
+    public void shouldAtualizarEstudante() {
+        final Estudante estudante = MockEstudante.getEstudante();
+
+        when(repository.save(estudante)).thenReturn(null);
+
+        service.atualizarEstudante(estudante);
+
+        verify(repository, times(1)).save(estudante);
+    }
+
+    @Test
+    public void shouldDeletarEstudante() {
+
+        doNothing().when(repository).deleteById(1l);
+
+        service.apagarEstudante(1l);
+
+        verify(repository, times(1)).deleteById(1l);
     }
 
 }

@@ -9,6 +9,8 @@ public class MockEstudante {
         estudante.setEmail("email");
         estudante.setNome("Lukas");
         estudante.setTelefone("telefone");
+        estudante.setMatricula("matricula");
+        estudante.setCurso("curso");
         return estudante;
     }
 

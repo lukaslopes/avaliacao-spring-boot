@@ -38,4 +38,8 @@ public class EstudanteServiceImpl implements EstudanteService {
 	    return result.orElseThrow(() -> new IllegalArgumentException("Identificador inválido:" + id));
 	}
 
+	@Override
+    public void apagarEstudante(final long id) {
+	    repository.deleteById(id);
+    }
 }

@@ -1,0 +1,5 @@
+Lukas Antunes Lopes
+
+Não conhecia o themeleaf, mas não foi dificil de pegar, acho q não prejudiou
+Não fiz os testes do repository, pois não escrevi nada lá, usei apenas os métodos do CRUDRepository. Fiz apenas dos controllers e service
+
